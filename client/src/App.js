@@ -1,37 +1,54 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import './App.css'
+import Form from "react-jsonschema-form"
+import {debounce} from 'lodash'
 
 class App extends Component {
 
-  state = { data: null }
-
-  componentDidMount() {
-    this.callBackendAPI()
-      .then(res => this.setState({ data: res.express }))
-      .then(err => console.log(err))
-  }
-
-  callBackendAPI = async () => {
-    const response = await fetch('/api')
-    const body = await response.json()
-
-    if (response.status !== 200) {
-      throw Error(body.message)
+  constructor(props) {
+    super(props)
+    this.state = {
+      data: {}
     }
-
-    return body
+    this.formSchema = require('./formSchema.json')
+    this.log = (type) => console.log.bind(console, type)
   }
+
+  callBackendAPI = async (originEventNumber) => {
+      const response = await fetch(`/api/${originEventNumber}`)
+      if (response.status !== 200) {
+        throw Error(response.statusText)
+      }
+      return response.json()
+  }
+
+  onChange = debounce( ({formData: {originEventNumber}}) => {
+    if ( (originEventNumber && originEventNumber.length > 3)
+      && (originEventNumber !== this.state.data.originEventNumber)
+    ) {
+      this.callBackendAPI(originEventNumber)
+        .then(res => this.setState({ data: res }))
+        .catch(err => console.error(err))
+    }
+  }, 350)
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">SISCOAF XML BUILDER for REGISTER</h1>
         </header>
-        <p>{this.state.data}</p>
+        <nav className="App-nav"></nav>
+        <div className="App-content">
+          <main className="App-main">
+            <Form schema={this.formSchema}
+              formData={this.state.data}
+              onChange={this.onChange}
+              onSubmit={this.log("submit")}
+              onError={this.log("errors")}
+            />
+          </main>
+        </div>
       </div>
     );
   }
