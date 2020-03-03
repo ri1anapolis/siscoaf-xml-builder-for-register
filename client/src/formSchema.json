@@ -46,6 +46,60 @@
     "eventValue": {
       "type": "number",
       "title": "Valor da(s) operação(ões)"
+    },
+    "eventAssociatedPeople": {
+      "title": "Pessoa(s) envolvida(s)",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/person"
+      }
+    }
+  },
+  "definitions": {
+    "person": {
+      "type": "object",
+      "required": [
+        "personQualification"
+      ],
+      "properties": {
+        "personQualification": {
+          "type": "string",
+          "title": "Tipo de relação envolvida",
+          "enum": [
+            "Beneficiário Final", "Outros",
+            "Procurador / Representante Legal",
+            "Titular"
+          ],
+          "default": "Titular"
+        },
+        "personWithoutId": {
+          "type": "boolean",
+          "title": "Pessoal sem CPF/CNPJ",
+          "default": false
+        },
+        "personIsGovernmentEmployee": {
+          "type": "string",
+          "title": "Servidor Público",
+          "enum": [
+            "Não", "Sim", "SPF", "SPE", "SPM"
+          ],
+          "default": "Não"
+        },
+        "personIsPoliticallyExposed": {
+          "type": "boolean",
+          "title": "Pessoa Politicamente Exposta",
+          "defautl": false
+        },
+        "personIsObliged": {
+          "type": "boolean",
+          "title": "Pessoa Obrigada",
+          "default": false
+        },
+        "personName": {
+          "type": "string",
+          "title": "Nome"
+        }
+      }
     }
   }
 }

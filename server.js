@@ -16,4 +16,5 @@ app.get('/api', (req, res) => {
 
 app.get('/api/:originEventNumber', async (req, res) => {
     res.send( await getProtocolData(req.params.originEventNumber) )
+    console.log(`Searched for  ${req.params.originEventNumber}`)
 })

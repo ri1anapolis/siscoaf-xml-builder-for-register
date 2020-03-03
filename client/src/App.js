@@ -7,10 +7,9 @@ class App extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-      data: {}
-    }
+    this.state = { data: {} }
     this.formSchema = require('./formSchema.json')
+    this.uiSchema = require('./uiSchema.json')
     this.log = (type) => console.log.bind(console, type)
   }
 

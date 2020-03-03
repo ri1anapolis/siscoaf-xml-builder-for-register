@@ -33,7 +33,7 @@ async function getProtocolData (originEventNumber) {
         eventValue,
         eventInitialDate: eventDate,
         eventFinalDate: eventDate,
-        eventAssociatePeople: peopleRows
+        eventAssociatedPeople: peopleRows
     }
 }
 
