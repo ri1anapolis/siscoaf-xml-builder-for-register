@@ -8,25 +8,25 @@
   "properties": {
     "originEventNumber": {
       "type": "string",
-      "title": "Número origem"
+      "title": "Número origem:"
     },
     "eventInitialDate": {
       "type": "string",
       "format": "date",
-      "title": "Data inicial do fato"
+      "title": "Data inicial do fato:"
     },
     "eventFinalDate": {
       "type": "string",
       "format": "date",
-      "title": "Data final do fato"
+      "title": "Data final do fato:"
     },
     "eventCity": {
       "type": "string",
-      "title": "Cidade"
+      "title": "Cidade:"
     },
     "eventState": {
       "type": "string",
-      "title": "UF",
+      "title": "UF:",
       "enum": [
         "AC", "AL", "AP", "AM", "BA", "CE",
         "DF", "ES", "GO", "MA", "MT", "MS",
@@ -45,7 +45,7 @@
     },
     "eventValue": {
       "type": "number",
-      "title": "Valor da(s) operação(ões)"
+      "title": "Valor da(s) operação(ões):"
     },
     "eventAssociatedPeople": {
       "title": "Pessoa(s) envolvida(s)",
@@ -64,26 +64,13 @@
       "properties": {
         "personQualification": {
           "type": "string",
-          "title": "Tipo de relação envolvida",
+          "title": "Tipo de relação envolvida:",
           "enum": [
-            "Beneficiário Final", "Outros",
+            "", "Beneficiário Final", "Outros",
             "Procurador / Representante Legal",
             "Titular"
           ],
           "default": "Titular"
-        },
-        "personWithoutId": {
-          "type": "boolean",
-          "title": "Pessoal sem CPF/CNPJ",
-          "default": false
-        },
-        "personIsGovernmentEmployee": {
-          "type": "string",
-          "title": "Servidor Público",
-          "enum": [
-            "Não", "Sim", "SPF", "SPE", "SPM"
-          ],
-          "default": "Não"
         },
         "personIsPoliticallyExposed": {
           "type": "boolean",
@@ -95,9 +82,21 @@
           "title": "Pessoa Obrigada",
           "default": false
         },
+        "personIsGovernmentEmployee": {
+          "type": "string",
+          "title": "Servidor Público:",
+          "enum": [
+            "Não", "Sim", "SPF", "SPE", "SPM"
+          ],
+          "default": "Não"
+        },
         "personName": {
           "type": "string",
-          "title": "Nome"
+          "title": "Nome:"
+        },
+        "personId": {
+          "type": "string",
+          "title": "CPF / CNPJ:"
         }
       }
     }
