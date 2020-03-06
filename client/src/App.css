@@ -41,6 +41,8 @@
     padding: 5px;
     height: calc(100vh - 140px);
     text-align: justify;
+    display: flex;
+    justify-content: space-around;
 }
 
 .App-a
@@ -64,13 +66,22 @@ i.glyphicon { display: none; }
 .array-item-move-down::after { content: 'Descer'; }
 .array-item-remove::after { content: 'Remover'; }
 
-input[type="text"].form-control { width: auto;}
+form {
+  min-width: 600px;
 
-fieldset#root > div.form-group {
+}
+fieldset > div.form-group {
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
   align-items: center;
   padding: 1px;
+}
+div.field-string > label, div.field-number > label {
+  width: 200px;
+}
+input[type="text"].form-control
+, input[type="number"].form-control {
+  width: 300px;
 }
 div.field-array {
   margin-top: 20px;
