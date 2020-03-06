@@ -33,7 +33,9 @@ async function getProtocolData (originEventNumber) {
         eventValue,
         eventInitialDate: eventDate,
         eventFinalDate: eventDate,
-        eventAssociatedPeople: peopleRows
+        eventAssociatedPeople: peopleRows,
+        eventCity: process.env.APP_DEFAULT_CITY || null,
+        eventState: process.env.APP_DEFAULT_STATE || null
     }
 }
 
