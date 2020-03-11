@@ -1,0 +1,18 @@
+{
+    "eventAssociatedPeopleContainer": {
+        "classNames": "hide",
+        "eventAssociatedPeople": {
+            "classNames": "person-container"
+        }
+    },
+    "eventLegalContextAppliedContainer": {
+        "classNames": "hide",
+        "eventLegalContextApplied": {
+            "classNames": "legalContext-container",
+            "ui:widget": "checkboxes"
+        }
+    },
+    "eventDescription": {
+        "ui:widget": "textarea"
+    }
+}

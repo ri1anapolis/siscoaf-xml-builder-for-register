@@ -1,0 +1,190 @@
+{
+  "title": "Informações do Evento",
+  "type": "object",
+  "required": [
+    "originEventNumber", "eventCity", "eventState", "eventValue",
+    "eventInitialDate", "eventFinalDate", "notifierId", "eventDescription"
+  ],
+  "properties": {
+    "originEventNumber": {
+      "type": "string",
+      "title": "Número origem:",
+      "maxLength": 80
+    },
+    "eventInitialDate": {
+      "type": "string",
+      "format": "date",
+      "title": "Data inicial do fato:"
+    },
+    "eventFinalDate": {
+      "type": "string",
+      "format": "date",
+      "title": "Data final do fato:"
+    },
+    "eventCity": {
+      "type": "string",
+      "title": "Cidade:",
+      "maxLength": 100
+    },
+    "eventState": {
+      "type": "string",
+      "title": "UF:",
+      "enum": [
+        "AC", "AL", "AP", "AM", "BA", "CE",
+        "DF", "ES", "GO", "MA", "MT", "MS",
+        "MG", "PA", "PB", "PR", "PE", "PI",
+        "RJ", "RN", "RS", "RO", "RR", "SC",
+        "SP", "SE", "TO"
+      ],
+      "enumNames": [
+        "Acre", "Alagoas", "Amapá", "Amazonas", "Bahia", "Ceara",
+        "Distrito Federal", "Espírito Santo", "Goiás", "Maranhão",
+        "Mato Grosso", "Mato Grosso do Sul", "Minas Gerais", "Pará",
+        "Paraíba", "Paraná", "Pernambuco", "Piauí", "Rio de Janeiro",
+        "Rio Grande do Norte", "Rio Grande do Sul", "Rondônia",
+        "Roraima", "Santa Catarina", "São Paulo", "Sergipe", "Tocantins"
+      ]
+    },
+    "eventValue": {
+      "type": "number",
+      "title": "Valor da(s) operação(ões):",
+      "minimum": 1
+    },
+    "notifierId": {
+      "title":"CPF/CNPJ do Notificador:",
+      "type": "string",
+      "maxLength": 14
+    },
+    "eventDescription": {
+      "title": "Descrição do Evento:",
+      "type": "string",
+      "maxLength": 200
+    },
+    "eventAssociatedPeopleContainer": {
+      "type": "object",
+      "properties": {
+        "eventAssociatedPeople": {
+          "title": "Pessoa(s) envolvida(s)",
+          "type": "array",
+          "minItens": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/person"
+          }
+        }
+      }
+    },
+    "eventLegalContextAppliedContainer": {
+      "title": "Ocorrências",
+      "type": "object",
+      "properties": {
+        "eventLegalContextApplied": {
+          "title": "Ocorrências",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "951", "952", "953", "954", "955", "956", "957", "958", "959", "960", "961", "962"
+              , "963", "964", "965", "966", "967", "968", "969", "970", "971", "972", "973"
+              , "974", "975", "976", "977", "978", "979", "980", "981", "982", "983", "984"
+              , "985", "986", "987", "988", "989", "990", "991", "992"
+            ],
+            "enumNames": [
+              "951 - Art. 20-I - a operação que aparente não resultar de atividades ou negócios usuais do cliente ou do seu ramo de negócio. CNJ - Provimento 88/2019."
+              , "952 - Art. 20-II - a operação cuja origem ou fundamentação econômica ou legal não sejam claramente aferíveis. CNJ - Provimento 88/2019."
+              , "953 - Art. 20-III - a operação incompatível com o patrimônio ou com a capacidade econômico-financeira do cliente. CNJ - Provimento 88/2019."
+              , "954 - Art. 20-IV - a operação cujo beneficiário final não seja possível identificar. CNJ - Provimento 88/2019."
+              , "955 - Art. 20-V - as operações envolvendo pessoas jurídicas domiciliadas em jurisdições consideradas pelo Grupo de Ação contra a Lavagem de Dinheiro e o Financiamento do Terrorismo (Gafi) de alto risco ou com deficiências estratégicas de prevenção e combate à lavagem de dinheiro e ao financiamento do terrorismo. CNJ - Provimento 88/2019."
+              , "956 - Art. 20-VI - operações envolvendo países ou dependências considerados pela RFB de tributação favorecida e/ou regime fiscal privilegiado, conforme lista pública. CNJ - Provimento 88/2019."
+              , "957 - Art. 20-VII - a operação envolvendo pessoa jurídica cujo beneficiário final, sócios, acionistas, procuradores ou representantes legais mantenham domicílio em jurisdições consideradas pelo Gafi de alto risco ou com deficiências estratégicas de prevenção e combate à lavagem de dinheiro e ao financiamento do terrorismo. CNJ - Provimento 88/2019."
+              , "958 - Art. 20-VIII - a resistência, por parte do cliente e/ou dos demais envolvidos, no fornecimento de informações solicitadas para o registro da operação, bem como para o preenchimento dos cadastros. CNJ - Provimento 88/2019."
+              , "959 - Art. 20-IX - a prestação, por parte do cliente e/ou dos demais envolvidos, de informação falsa ou de difícil ou onerosa verificação para o registro da operação, bem como para o preenchimento dos cadastros. CNJ - Provimento 88/2019."
+              , "960 - Art. 20-X - a operação injustificadamente complexa ou com custos mais elevados, que visem dificultar o rastreamento dos recursos ou a identificação do seu real objetivo. CNJ - Provimento 88/2019."
+              , "961 - Art. 20-XI - a operação fictícia ou com indícios de valores incompatíveis com os de mercado. CNJ - Provimento 88/2019."
+              , "962 - Art. 20-XII - a operação com cláusulas que estabeleçam condições incompatíveis com as praticadas no mercado. CNJ - Provimento 88/2019."
+              , "963 - Art. 20-XIII - qualquer tentativa de burlar os controles e registros exigidos pela legislação de prevenção à lavagem de dinheiro e ao financiamento do terrorismo, através de fracionamento, pagamento em espécie ou por meio de título emitido ao portador. CNJ - Provimento 88/2019."
+              , "964 - Art. 20-XIV - o registro de documentos de procedência estrangeira, nos termos do art. 129, 6º, c/c o art. 48 da Lei n. 6.015, de 31 de dezembro de 1973. CNJ - Provimento 88/2019."
+              , "965 - Art. 20-XV - a operação que indique substancial ganho de capital em um curto período de tempo. CNJ - Provimento 88/2019."
+              , "966 - Art. 20-XVI - a operação que envolva a expedição ou utilização de instrumento de procuração que outorgue poderes de administração, de gerência dos negócios, ou de movimentação de conta corrente vinculada de empresário individual, sociedade empresária ou cooperativa. CNJ - Provimento 88/2019."
+              , "967 - Art. 20-XVII - as operações de aumento de capital social quando pelas partes envolvidas no ato, ou as características do empreendimento, verificar-se indícios de que o referido aumento não possui correspondência com o valor ou o patrimônio da empresa. CNJ - Provimento 88/2019."
+              , "968 - Art. 20-XVIII - quaisquer outras operações que, considerando as partes e demais envolvidos, os valores, modo de realização e meio e forma de pagamento, ou a falta de fundamento econômico ou legal, possam configurar sérios indícios da ocorrência dos crimes de lavagem de dinheiro ou de financiamento do terrorismo, ou com eles relacionar-se. CNJ - Provimento 88/2019."
+              , "969 - Art. 20-XIX - outras situações designadas em instruções complementares a este provimento. CNJ - Provimento 88/2019."
+              , "970 - Art. 23-I - qualquer operação que envolva o pagamento ou recebimento de valor em espécie, igual ou superior a R$ 30.000,00 (trinta mil reais) ou equivalente em outra moeda, desde que perante o tabelião. CNJ - Provimento 88/2019."
+              , "971 - Art. 23-II - qualquer operação que envolva o pagamento ou recebimento de valor, por meio de título de crédito emitido ao portador, igual ou superior a R$ 30.000,00 (trinta mil reais), desde que perante o tabelião. CNJ - Provimento 88/2019."
+              , "972 - Art. 24 - pagamentos ou cancelamentos de títulos protestados em valor igual ou superior a R$ 1.000.000,00 (um milhão de reais), não relacionados ao mercado financeiro, mercado de capitais ou entes públicos. CNJ - Provimento 88/2019."
+              , "973 - Art. 25-I - registro de transmissões sucessivas do mesmo bem, em período não superior a 6 (seis) meses, se a diferença entre os valores declarados for superior a 50%. CNJ - Provimento 88/2019."
+              , "974 - Art. 25-II - registro de título no qual constem diferenças entre o valor da avaliação fiscal do bem e o valor declarado, ou entre o valor patrimonial e o valor declarado (superior ou inferior), superiores a 100%. CNJ - Provimento 88/2019."
+              , "975 - Art. 25-III - registro de documento ou título em que conste declaração das partes de que foi realizado pagamento em espécie ou título de crédito ao portador de valores igual ou superior a R$ 30.000,00 (trinta mil reais). CNJ - Provimento 88/2019."
+              , "976 - Art. 26-I - doações de bens imóveis ou direitos reais sobre bens imóveis para terceiros sem vínculo familiar aparente com o doador, referente a bem imóvel que tenha valor venal atribuído pelo município igual ou superior a R$100.000,00 (cem mil reais). CNJ - Provimento 88/2019."
+              , "977 - Art. 26-II - concessão de empréstimos hipotecários ou com alienação fiduciária entre particulares. CNJ - Provimento 88/2019."
+              , "978 - Art. 26-III - registro de negócios celebrados por sociedades que tenham sido dissolvidas e tenham regressado à atividade. CNJ - Provimento 88/2019."
+              , "979 - Art. 26-IV - registro de aquisição de imóveis por fundações e associações, quando as características do negócio não se coadunem com as finalidades prosseguidas por aquelas pessoas jurídicas. CNJ - Provimento 88/2019."
+              , "980 - Art. 27 - operações que envolvam o pagamento ou recebimento de valor igual ou superior a R$ 50.000,00 (cinquenta mil reais) ou equivalente em outra moeda, inclusive quando se relacionar à compra ou venda de bens móveis e imóveis. CNJ - Provimento 88/2019."
+              , "981 - Art. 28-I - registro de quaisquer documentos que se refiram a transferências de bens imóveis de qualquer valor, de transferências de cotas ou participações societárias, de transferências de bens móveis de valor superior a R$ 30.000,00. CNJ - Provimento 88/2019."
+              , "982 - Art. 28-II - registro de quaisquer documentos que se refiram a mútuos concedidos ou contraídos ou doações concedidas ou recebidas, de valor superior ao equivalente a R$ 30.000,00. CNJ - Provimento 88/2019."
+              , "983 - Art. 28-III - registro de quaisquer documentos que se refiram, ainda que indiretamente, a participações, investimentos ou representações de pessoas naturais ou jurídicas brasileiras em entidades estrangeiras, especialmente “trusts” ou fundações. CNJ - Provimento 88/2019."
+              , "984 - Art. 28-IV - registro de instrumentos que prevejam a cessão de direito de títulos de créditos ou de títulos públicos de valor igual ou superior a R$ 500.000,00 (quinhentos mil reais). CNJ - Provimento 88/2019."
+              , "985 - Art. 35 - lavratura de procuração que outorgue plenos poderes de gestão empresarial, conferida em caráter irrevogável ou irretratável ou quando isenta de prestação de contas, independentemente de ser em causa própria, ou ainda, de ser ou não por prazo indeterminado. CNJ - Provimento 88/2019."
+              , "986 - Art. 36-I - qualquer operação que envolva o pagamento ou recebimento de valor em espécie igual ou superior a R$ 30.000,00 (trinta mil reais) ou equivalente em outra moeda, em espécie, inclusive a compra ou venda de bens móveis ou imóveis. CNJ - Provimento 88/2019."
+              , "987 - Art. 36-II - qualquer operação que envolva o pagamento ou recebimento de valor igual ou superior a R$ 30.000,00 (trinta mil reais), por meio de título de crédito emitido ao portador, inclusive a compra ou venda de bens móveis ou imóveis. CNJ - Provimento 88/2019."
+              , "988 - Art. 36-III - qualquer das hipóteses previstas em resolução da Unidade de Inteligência Financeira - UIF que disponha sobre procedimentos a serem observados pelas pessoas físicas e jurídicas por ela reguladas relativamente a operações ou propostas de operações ligadas ao terrorismo ou seu financiamento. CNJ - Provimento 88/2019."
+              , "989 - Art. 36-IV - qualquer operação ou conjunto de operações relativas a bens móveis de luxo ou alto valor, assim considerados os de valor igual ou superior a R$ 300.000,00 (trezentos mil reais), ou equivalente em outra moeda. CNJ - Provimento 88/2019."
+              , "990 - Art. 36-V - escritura pública - registro de transmissões sucessivas do mesmo bem, em período não superior a 6 (seis) meses, se a diferença entre os valores declarados for superior a 50%. CNJ - Provimento 88/2019 - art. 25-I."
+              , "991 - Art. 36-V - escritura pública - registro de título no qual constem diferenças entre o valor da avaliação fiscal do bem e o valor declarado, ou entre o valor patrimonial e o valor declarado (superior ou inferior), superiores a 100%;. CNJ - Provimento 88/2019 - art. 25-II."
+              , "992 - Art. 36-V - escritura pública - registro de documento ou título em que conste declaração das partes de que foi realizado pagamento em espécie ou título de crédito ao portador de valores igual ou superior a R$ 30.000,00 (trinta mil reais).. CNJ - Provimento 88/2019 - art. 25-II."
+            ]
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "person": {
+      "type": "object",
+      "required": [
+        "personQualification"
+      ],
+      "properties": {
+        "personQualification": {
+          "type": "string",
+          "title": "Tipo de relação envolvida:",
+          "enum": [ "0", "1", "7", "8", "32" ],
+          "enumNames": [
+            " ", "Titular",
+            "Procurador / Representante Legal",
+            "Outros", "Beneficiário Final"
+          ],
+          "default": 1
+        },
+        "personIsPoliticallyExposed": {
+          "type": "boolean",
+          "title": "Pessoa Politicamente Exposta",
+          "defautl": false
+        },
+        "personIsObliged": {
+          "title": "Pessoa Obrigada",
+          "type": "boolean",
+          "default": false
+        },
+        "personIsGovernmentEmployee": {
+          "type": "string",
+          "title": "Servidor Público:",
+          "enum": [ "0", "1"," 2", "3", "4" ],
+          "enumNames": [ "Não", "Sim", "SPF", "SPE", "SPM" ],
+          "default": "0"
+        },
+        "personName": {
+          "type": "string",
+          "title": "Nome:",
+          "maxLength": 150
+        },
+        "personId": {
+          "type": "string",
+          "title": "CPF / CNPJ:",
+          "maxLength": 14
+        }
+      }
+    }
+  }
+}

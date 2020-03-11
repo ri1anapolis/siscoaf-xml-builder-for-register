@@ -8,8 +8,8 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = { data: {} }
-    this.formSchema = require('./formSchema.json')
-    this.uiSchema = require('./uiSchema.json')
+    this.formSchema = require('./utils/formSchema.json')
+    this.uiSchema = require('./utils/uiSchema.json')
     this.axios = require('axios')
     this.log = (type) => console.log.bind(console, type)
   }
@@ -23,17 +23,16 @@ class App extends Component {
   }
 
   getXmlFromServer = async () => {
-    console.log({data: this.state.data})
     try {
-      const xmlData = await this.axios.post('/api/getXML', { data: this.state.data })
-      console.log( `The result is: ${xmlData}`)
+      await this.axios.post('/api/getXML', { data: this.state.data })
     } catch (error) {
-      console.error( `Error getting a XML file from server: ${error}`)
+      console.error( `Error sending the XML file to server: ${error}`)
     }
   }
 
   onChange = debounce( ({formData}) => {
     const {originEventNumber} = formData
+
     if ( (originEventNumber && originEventNumber.length > 3)
     && (originEventNumber !== this.state.data.originEventNumber)
     ) {
@@ -43,7 +42,7 @@ class App extends Component {
     } else {
       this.setState({ data: formData })
     }
-    console.log(formData)
+    console.log(JSON.stringify( this.state.data ))
   }, 350)
 
   render() {
@@ -56,6 +55,7 @@ class App extends Component {
         <div className="App-content">
           <main className="App-main">
             <Form schema={this.formSchema}
+              uiSchema={this.uiSchema}
               formData={this.state.data}
               onChange={this.onChange}
               onSubmit={this.getXmlFromServer}

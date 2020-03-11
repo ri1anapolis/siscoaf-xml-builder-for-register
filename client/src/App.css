@@ -67,8 +67,49 @@ i.glyphicon { display: none; }
 .array-item-remove::after { content: 'Remover'; }
 
 form {
-  min-width: 600px;
+  width: 800px;
+  
+}
 
+.array-item .field-object{
+  border: 1px solid #c3c3c3;
+  padding: 5px;
+}
+.legalContext-container .checkbox {
+  width: 100%;
+  word-break: normal;
+  border: 1px solid #e6e6e6;
+  padding: 2px;
+  margin-bottom: 2px;
+  color: #282c34;
+  font-size: 0.8em;
+}
+.legalContext-container .checkbox:hover {
+  color: #000;
+  border: 1px solid #c3c3c3;
+}
+.legalContext-container > label {
+  display: none;
+}
+
+fieldset {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+fieldset.field
+, fieldset#root
+, fieldset#root_eventLegalContextAppliedContainer {
+  display: block;
+  border: 1px solid #282c34;
+  padding: 10px;
+}
+fieldset#root_eventLegalContextAppliedContainer {
+  margin-top: 20px;
+}
+legend#root_eventAssociatedPeopleContainer__title{
+  display: none !important;
 }
 fieldset > div.form-group {
   display: flex;
@@ -80,7 +121,8 @@ div.field-string > label, div.field-number > label {
   width: 200px;
 }
 input[type="text"].form-control
-, input[type="number"].form-control {
+, input[type="number"].form-control
+, textarea.form-control {
   width: 300px;
 }
 div.field-array {
@@ -88,9 +130,6 @@ div.field-array {
 }
 div.array-item {
   margin-top: 10px;
-}
-fieldset.field-array {
-  width: 100%;
 }
 span.required {
   color: red;

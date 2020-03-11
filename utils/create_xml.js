@@ -1,16 +1,21 @@
 const { create } = require('xmlbuilder2')
+const dateFormatter = require('./date_formatter')
+
+const ocorrenciasId = `SISCOAF${dateFormatter( Date.now() )}`
 
 function createXML(jsonData) {
-    console.log(`xxxxxxxx: ${JSON.stringify(jsonData)}`)
-    const data = create({
-        root: {
-            '@att': 'val',
-            data: jsonData.data,
-            teste: {}
+    const fullJsonObject = {
+        LOTE: {
+            OCORRENCIAS :{
+                '@ID': ocorrenciasId,
+                OCORRENCIA: jsonData,
+            }
         }
-    })
-
-    return data.end({ prettyPrint: true })
+    }
+    const xmlData = create(fullJsonObject)
+    const finishedXmlData = xmlData.end({ prettyPrint: true })
+    console.log(finishedXmlData)
+    return finishedXmlData
 }
 
 module.exports = createXML
