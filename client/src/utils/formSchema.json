@@ -155,7 +155,7 @@
             "Procurador / Representante Legal",
             "Outros", "Beneficiário Final"
           ],
-          "default": 1
+          "default": "1"
         },
         "personIsPoliticallyExposed": {
           "type": "boolean",
