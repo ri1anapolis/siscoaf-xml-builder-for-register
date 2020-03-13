@@ -113,7 +113,8 @@ dist
 
 # production
 /build
-/assets
+/assets/*
+!/assets
 
 # misc
 .DS_Store
