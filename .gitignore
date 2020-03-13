@@ -114,7 +114,7 @@ dist
 # production
 /build
 /assets/*
-!/assets
+!/assets/.placeholder
 
 # misc
 .DS_Store
