@@ -1,7 +1,7 @@
 const { create } = require('xmlbuilder2')
-const dateFormatter = require('./date_formatter')
+const dateformat = require('dateformat')
 
-const ocorrenciasId = `SISCOAF${dateFormatter( Date.now() )}`
+const ocorrenciasId = `SISCOAF${dateformat( Date.now(), 'ddmmyyyy' )}`
 
 function createXML(jsonData) {
     const fullJsonObject = {
@@ -13,9 +13,7 @@ function createXML(jsonData) {
         }
     }
     const xmlData = create(fullJsonObject)
-    const finishedXmlData = xmlData.end({ prettyPrint: true })
-    console.log(finishedXmlData)
-    return finishedXmlData
+    return xmlData.end({ prettyPrint: true })
 }
 
 module.exports = createXML

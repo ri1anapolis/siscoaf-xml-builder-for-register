@@ -149,7 +149,7 @@
         "personQualification": {
           "type": "string",
           "title": "Tipo de relação envolvida:",
-          "enum": [ "0", "1", "7", "8", "32" ],
+          "enum": [ "0", "1", "7", "8", "33" ],
           "enumNames": [
             " ", "Titular",
             "Procurador / Representante Legal",

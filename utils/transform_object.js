@@ -1,3 +1,6 @@
+const dateformat = require('dateformat')
+const dateRegex = /^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/g
+
 function transformObject( object, attributesMap, excludeNonMappedAttributes = true ) {
     
     if (typeof object !== "object" ) {
@@ -16,9 +19,13 @@ function transformObject( object, attributesMap, excludeNonMappedAttributes = tr
         } else if ( object[attribute] instanceof Object ) {
             attributeValue = transformObject( object[attribute], attributesMap, excludeNonMappedAttributes )
         }
-
+        
         if ( "boolean" === typeof attributeValue ) {
             attributeValue = `${attributeValue | 0}`
+        }
+        
+        if (typeof attributeValue === 'string' && !!attributeValue.match(dateRegex)) {
+            attributeValue = ( dateformat(attributeValue, 'dd/mm/yyyy') )
         }
 
         if ( attributesMap.hasOwnProperty(attribute) ) {
@@ -26,10 +33,7 @@ function transformObject( object, attributesMap, excludeNonMappedAttributes = tr
         } else if ( !excludeNonMappedAttributes ){
             newObject[attribute] = attributeValue
         }
-
-        console.log(`${JSON.stringify([attribute])}: ${attributeValue}`)
     })
-
 
     return newObject
 }

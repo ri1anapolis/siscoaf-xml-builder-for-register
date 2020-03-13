@@ -24,9 +24,25 @@ class App extends Component {
 
   getXmlFromServer = async () => {
     try {
-      await this.axios.post('/api/getXML', { data: this.state.data })
+      const {data: {status, url, fileName}} = await this.axios.post('/api/getXML', { data: this.state.data })
+      
+      if (status) {
+        const response = await this.axios({
+          url,
+          method: 'GET',
+          responseType: 'blob',
+        })
+  
+        const downloadUrl = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = downloadUrl;
+        link.setAttribute('download', fileName)
+        link.click();
+        window.URL.revokeObjectURL(downloadUrl);
+      }
+
     } catch (error) {
-      console.error( `Error sending the XML file to server: ${error}`)
+      console.error( `Something went wrong: ${error}`)
     }
   }
 
@@ -42,7 +58,6 @@ class App extends Component {
     } else {
       this.setState({ data: formData })
     }
-    console.log(JSON.stringify( this.state.data ))
   }, 350)
 
   render() {
