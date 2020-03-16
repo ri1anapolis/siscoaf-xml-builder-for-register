@@ -1,0 +1,14 @@
+version: '3.1'
+
+services:
+  node:
+    build: .
+    container_name: siscoafxmlbuilderforregister
+    restart: always
+    environment:
+      TZ: 'America/Sao_Paulo'
+    env_file:
+      - ./.env
+    command: yarn start
+    ports:
+      - "8099:8099"

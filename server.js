@@ -11,7 +11,7 @@ const createXML = require('./utils/create_xml')
 const saveFile = require('./utils/save_file')
 
 const app = express()
-const port = process.env.BACKEND_PORT || 5000
+const port = process.env.BACKEND_PORT || 8099
 const staticFilesAddress = '/static'
 const clientFiles = `${__dirname}/client/build`
 const seversideFiles = `${__dirname}/assets`
