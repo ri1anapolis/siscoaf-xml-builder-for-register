@@ -114,7 +114,7 @@ dist
 # production
 /build
 /assets/*
-!/assets/.placeholder
+!/assets/siscoafxmlbuilder.jpg
 
 # misc
 .DS_Store
@@ -122,3 +122,7 @@ dist
 .env.development.local
 .env.test.local
 .env.production.local
+
+# ssl keys
+server.cert
+server.key

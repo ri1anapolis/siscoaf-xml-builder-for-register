@@ -1,0 +1,10 @@
+{
+  "short_name": "SISCOAF XML BUILDER",
+  "name": "SISCOAF XML BUILDER for REGISTER",
+  "description": "Construa XML para o SISCOAF a partir do Escriba Register.",
+  "lang": "pt-BR",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#282c34",
+  "background_color": "#ffffff"
+}

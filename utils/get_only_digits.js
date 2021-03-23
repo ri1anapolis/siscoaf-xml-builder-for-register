@@ -1,5 +1,9 @@
 function getOnlyDigits(string) {
-    return  string.match(/\d+/g).join('')
+  const digits = string.match(/\d+/g)
+  if (Array.isArray(digits)) {
+    return digits.join('')
+  }
+  return null
 }
 
 module.exports = getOnlyDigits
