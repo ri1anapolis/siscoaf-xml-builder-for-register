@@ -5,6 +5,7 @@ COPY client/src/ ./client/src/
 COPY client/public/ ./client/public/
 COPY client/package.json ./client/
 COPY client/yarn.lock ./client/
+COPY client/config-overrides.js ./client/
 COPY utils/ ./utils/
 COPY package.json .
 COPY yarn.lock .
