@@ -17,7 +17,7 @@ const transformErrors = (errors) => {
     }
 
     if (name === 'pattern' && property === '.eventDescription') {
-      const message = 'Não são permitidos caracteres especiais.'
+      const message = 'Não são permitidos os seguintes caracteres: " \' & < >'
       error.message = message
       error.stack = `Descrição do Evento: ${message}`
     }
@@ -55,8 +55,7 @@ const transformErrors = (errors) => {
       const personPositionNumber = +property.match(/\d/).join('') + 1
 
       if (name === 'pattern') {
-        const message =
-          'O nome da pessoa/empresa deve ser composto apenas por caracteres alfanuméricos.'
+        const message = 'Não são permitidos os seguintes caracteres: " \' & < >'
         error.message = message
         error.stack = `Pessoa envolvida #${personPositionNumber}: ${message}`
       }

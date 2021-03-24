@@ -4,12 +4,15 @@ const getOnlyDigits = require('./get_only_digits')
 
 async function getProtocolData(originEventNumber) {
   try {
+    if (originEventNumber.match(/\D/g))
+      throw Error('O número informado contém caracteres não válidos!')
+
     const connectionConfig = {
-      host: process.env.MYSQL_HOST || 'localhost',
-      port: process.env.MYSQL_PORT || '3306',
-      user: process.env.MYSQL_USER || 'usrdmp',
-      password: process.env.MYSQL_PASSWORD || '123123',
-      database: process.env.MYSQL_DB || 'sqlreg3',
+      host: process.env.MYSQL_HOST,
+      port: process.env.MYSQL_PORT,
+      user: process.env.MYSQL_USER,
+      password: process.env.MYSQL_PASSWORD,
+      database: process.env.MYSQL_DB,
     }
 
     const connection = await mysql.createConnection(connectionConfig)
@@ -58,13 +61,14 @@ async function getProtocolData(originEventNumber) {
       eventFinalDate: eventDate,
       eventCity: process.env.APP_DEFAULT_CITY || null,
       eventState: process.env.APP_DEFAULT_STATE || null,
-      notifierId: getOnlyDigits(process.env.APP_DEFAULT_NOTIFIERID) || null,
+      notifierId: getOnlyDigits(process.env.APP_DEFAULT_NOTIFIERID),
       eventAssociatedPeopleContainer: {
         eventAssociatedPeople: people,
       },
     }
   } catch (error) {
-    console.error('Error:', error)
+    console.error(`Erro: ${error.message}`)
+    return { message: error.message }
   }
 }
 

@@ -14,6 +14,38 @@ class App extends Component {
     this.log = (type) => console.log.bind(console, type)
   }
 
+  isHandlingLocalDataOnly = (formData) => {
+    const { originEventNumber, eventCity, eventState, notifierId } = formData
+    const { originEventNumber: stateOriginNumber } = this.state.data
+
+    const sanitizedOriginNumber = originEventNumber?.match(/\w/g)?.join('')
+    const sanitizedStateNumber = stateOriginNumber?.match(/\w/g)?.join('')
+    const numberIsSearchable =
+      !originEventNumber?.match(/\D/) && originEventNumber?.length > 3
+
+    if (
+      originEventNumber === stateOriginNumber ||
+      (!numberIsSearchable && sanitizedOriginNumber === sanitizedStateNumber)
+    ) {
+      this.setState({ data: formData })
+      return true
+    }
+
+    if (!numberIsSearchable) {
+      this.setState({
+        data: {
+          eventCity,
+          eventState,
+          notifierId,
+          originEventNumber,
+        },
+      })
+      return true
+    }
+
+    return false
+  }
+
   getEventDataFromServer = async (originEventNumber) => {
     const response = await fetch(`/api/${originEventNumber}`)
     if (response.status !== 200) {
@@ -50,20 +82,14 @@ class App extends Component {
   }
 
   onChange = debounce(({ formData }) => {
-    const { originEventNumber } = formData
-    const { originEventNumber: stateOriginNumber } = this.state.data
+    const workingLocallyOnly = this.isHandlingLocalDataOnly(formData)
 
-    if (
-      originEventNumber?.length > 3 &&
-      originEventNumber !== stateOriginNumber
-    ) {
-      this.getEventDataFromServer(originEventNumber)
+    if (!workingLocallyOnly) {
+      this.getEventDataFromServer(formData.originEventNumber)
         .then((res) => this.setState({ data: res }))
         .catch((err) => console.error(err))
-    } else {
-      this.setState({ data: formData })
     }
-  }, 350)
+  }, 500)
 
   render() {
     return (

@@ -14,7 +14,7 @@
   "properties": {
     "originEventNumber": {
       "type": "string",
-      "pattern": "^[a-zA-Z0-9]+$",
+      "pattern": "^[\\w]+$",
       "title": "Número origem:",
       "minLength": 4,
       "maxLength": 80
@@ -110,7 +110,7 @@
     },
     "eventDescription": {
       "title": "Descrição do Evento:",
-      "pattern": "^[a-zA-Z0-9\u00C0-\u00FF\\.\\,\\s]+$",
+      "pattern": "^[^\u0022\u0026\u0027\u003C\u003E]+$",
       "type": "string",
       "maxLength": 200
     },
@@ -271,7 +271,7 @@
         },
         "personName": {
           "type": "string",
-          "pattern": "^[a-zA-Z0-9\u00C0-\u00FF\\-\\'\\s]+$",
+          "pattern": "^[^\u0022\u0026\u0027\u003C\u003E]+$",
           "title": "Nome:",
           "minLength": 3,
           "maxLength": 150
